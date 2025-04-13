@@ -247,6 +247,15 @@ class list {
         return -1;
     }
 
+    public boolean contains(int target_value) {
+        /*
+         * Check if the target_value is found on the list, if it is exists return true,
+         * otherwise return false.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
+        return search_first(target_value) != -1;
+    }
 }
 
 public class list_test {
