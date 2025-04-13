@@ -272,6 +272,16 @@ class list {
         }
         return sum;
     }
+
+    public float average() {
+        /*
+         * Calculate the average value of the list and return it (as float).
+         * 
+         * Developer: Pall Pandiyan.S
+         */
+        int sum = sum();
+        return sum / size;
+    }
 }
 
 public class list_test {
