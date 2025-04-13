@@ -98,27 +98,47 @@ class list {
     }
 
     public void push(int element_value) {
-        // add the new node at the tail.
+        /*
+         * Get a integer value, create a new node and append it on the tail of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         add_element(2, element_value);
     }
 
     public void append_left(int element_value) {
-        // add the new node at the head.
+        /*
+         * Get a integer value, create a new node and append it on the head of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         add_element(1, element_value);
     }
 
     public void append(int element_value) {
-        // add the new node at the tail.
+        /*
+         * Get a integer value, create a new node and append it on the tail of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         add_element(2, element_value);
     }
 
     public void add_first(int element_value) {
-        // add the new node at the head.
+        /*
+         * Get a integer value, create a new node and append it on the head of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         add_element(1, element_value);
     }
 
     public void add_last(int element_value) {
-        // add the new node at the tail.
+        /*
+         * Get a integer value, create a new node and append it on the tail of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         add_element(2, element_value);
     }
 
@@ -162,27 +182,47 @@ class list {
     }
 
     public void pop() {
-        // remove the element on head.
+        /*
+         * Remove an element from the head of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         remove_element(1);
     }
 
     public void remove() {
-        // remove the element on tail.
+        /*
+         * Remove an element from the tail of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         remove_element(2);
     }
 
     public void remove_left() {
-        // remove the element on head.
+        /*
+         * Remove an element from the head of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         remove_element(1);
     }
 
     public void remove_first() {
-        // remove the element on head.
+        /*
+         * Remove an element from the head of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         remove_element(1);
     }
 
     public void remove_last() {
-        // remove the element on tail.
+        /*
+         * Remove an element from the tail of the list.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
         remove_element(2);
     }
 }
