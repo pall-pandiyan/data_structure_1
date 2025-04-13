@@ -256,6 +256,22 @@ class list {
          */
         return search_first(target_value) != -1;
     }
+
+    public int sum() {
+        /*
+         * Calculate the sum of the values in the list and return it.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
+        Node current = head;
+        int sum = 0;
+
+        while (current != null) {
+            sum += current.value;
+            current = current.next;
+        }
+        return sum;
+    }
 }
 
 public class list_test {
