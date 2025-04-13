@@ -225,6 +225,28 @@ class list {
          */
         remove_element(2);
     }
+
+    public int search_first(int target_value) {
+        /*
+         * Linearly search through the list from head to tail for the target_value, if
+         * the target found on the list return the index of the element, otherwise
+         * return -1.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
+        Node current = head;
+        int ind = -1;
+
+        while (current != null) {
+            ind++;
+            if (target_value == current.value) {
+                return ind;
+            }
+            current = current.next;
+        }
+        return -1;
+    }
+
 }
 
 public class list_test {
