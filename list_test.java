@@ -53,7 +53,28 @@ class list {
     }
 
     public void print_detailed() {
+        System.out.println("Printing detailed info:");
+        System.out.println("head: " + head);
+        System.out.println("tail: " + tail);
 
+        Node current = head;
+        while (current != null) {
+            if (current.previous != null) {
+                System.out.print("previous: " + current.previous.value + " ");
+            } else {
+                System.out.print("previous: null ");
+            }
+
+            System.out.print("value: " + current.value + " ");
+
+            if (current.next != null) {
+                System.out.print("next: " + current.next.value + "\n");
+            } else {
+                System.out.print("next: null\n");
+            }
+
+            current = current.next;
+        }
     }
     public boolean is_empty() {
         /*
@@ -313,73 +334,6 @@ class list {
 
 public class list_test {
     public static void main(String[] args) {
-        /*
-         * list l = new list();
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.push(1);
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.push(2);
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.push(3);
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.push(4);
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.push(5);
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.pop();
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.pop();
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.add_first(10);
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.add_first(50);
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.remove_first();
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.remove_first();
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         * 
-         * l.remove_first();
-         * System.out.println("size: " + l.size);
-         * l.print();
-         * System.out.println();
-         */
-
         list l = new list();
         Scanner scanner = new Scanner(System.in);
         int choice, new_value;
@@ -482,7 +436,7 @@ public class list_test {
                 case 9:
                     l.reverse();
                     System.out.println("\t*  Size: " + l.size + "                                       *");
-                    l.print();
+                    l.print_detailed();
                     System.out.println("\t*------------------------------------------------*");
                     System.out.println();
                     break;
