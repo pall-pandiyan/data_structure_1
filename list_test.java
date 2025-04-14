@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Node {
     /*
      * Represents a single node - a element of the list. It has a integer value and
@@ -50,6 +52,9 @@ class list {
         System.out.println();
     }
 
+    public void print_detailed() {
+
+    }
     public boolean is_empty() {
         /*
          * Return true if the list is empty, otherwise return false.
@@ -282,73 +287,210 @@ class list {
         int sum = sum();
         return sum / size;
     }
+
+    public void reverse() {
+        /*
+         * Reverse the current function inplace (just update the address references).
+         * 
+         * Developer: Pall Pandiyan.S
+         */
+
+        Node current = head;
+        while (current != null) {
+            Node next = current.next;
+            Node previous = current.previous;
+            current.previous = next;
+            current.next = previous;
+
+            current = current.previous;
+        }
+        // make sure to update head, tail references
+        Node old_tail = tail;
+        tail = head;
+        head = old_tail;
+    }
 }
 
 public class list_test {
     public static void main(String[] args) {
+        /*
+         * list l = new list();
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.push(1);
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.push(2);
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.push(3);
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.push(4);
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.push(5);
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.pop();
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.pop();
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.add_first(10);
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.add_first(50);
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.remove_first();
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.remove_first();
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         * 
+         * l.remove_first();
+         * System.out.println("size: " + l.size);
+         * l.print();
+         * System.out.println();
+         */
+
         list l = new list();
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
+        Scanner scanner = new Scanner(System.in);
+        int choice, new_value;
+        boolean repeat = true;
 
-        l.push(1);
-        System.out.println("size: " + l.size);
-        l.print();
         System.out.println();
+        System.out.println("\t*------------------------------------------------*");
+        System.out.println("\t*                 list functions:                *");
+        System.out.println("\t*------------------------------------------------*");
+        System.out.println("\t*  1) add an element from head.                  *");
+        System.out.println("\t*  2) add an element from tail.                  *");
+        System.out.println("\t*  3) remove an element from head.               *");
+        System.out.println("\t*  4) remove an element from tail.               *");
+        System.out.println("\t*  5) search for an element.                     *");
+        System.out.println("\t*  6) check if an element exists in the list.    *");
+        System.out.println("\t*  7) sum of all the elements in the list.       *");
+        System.out.println("\t*  8) average of all the elements in the list.   *");
+        System.out.println("\t*  9) reverse the list.                          *");
+        System.out.println("\t*  0) EXIT.                                      *");
+        System.out.println("\t*------------------------------------------------*");
 
-        l.push(2);
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
+        while (repeat) {
+            System.out.print("\t*  enter your choice: ");
+            try {
+                choice = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("\t*  Invalid choice!, Exiting now!                 *");
+                System.out.println("\t*------------------------------------------------*");
+                System.out.println();
+                repeat = false;
+                continue;
+            }
 
-        l.push(3);
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
+            switch (choice) {
+                case 0:
+                    System.out.println("\t*  Goodbye!                                      *");
+                    System.out.println("\t*------------------------------------------------*");
+                    System.out.println();
+                    repeat = false;
+                    continue;
+                case 1:
+                    System.out.print("\t*  enter the new number: ");
+                    new_value = scanner.nextInt();
+                    l.add_first(new_value);
+                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    l.print();
+                    System.out.println("\t*------------------------------------------------*");
+                    System.out.println();
+                    break;
+                case 2:
+                    System.out.print("\t*  enter the new number: ");
+                    new_value = scanner.nextInt();
+                    l.add_last(new_value);
+                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    l.print();
+                    System.out.println("\t*------------------------------------------------*");
+                    System.out.println();
+                    break;
+                case 3:
+                    l.remove_first();
+                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    l.print();
+                    System.out.println("\t*------------------------------------------------*");
+                    System.out.println();
+                    break;
+                case 4:
+                    l.remove_last();
+                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    l.print();
+                    System.out.println("\t*------------------------------------------------*");
+                    System.out.println();
+                    break;
+                case 5:
+                    System.out.print("\t*  enter the number to search: ");
+                    new_value = scanner.nextInt();
 
-        l.push(4);
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
+                    System.out.println(
+                            "\t*  Index: " + l.search_first(new_value)
+                                    + "                                       *");
+                    System.out.println();
+                    break;
+                case 6:
+                    System.out.print("\t*  enter the number to check: ");
+                    new_value = scanner.nextInt();
+                    System.out.println(
+                            "\t*  list contains " + new_value + "? " + l.contains(new_value)
+                                    + "                        *");
+                    System.out.println();
+                    break;
+                case 7:
+                    System.out.println(
+                            "\t*  Sum: " + l.sum() + "                                       *");
+                    System.out.println();
+                    break;
+                case 8:
+                    System.out.println(
+                            "\t*  Average: " + l.average() + "                                       *");
+                    System.out.println();
+                    break;
+                case 9:
+                    l.reverse();
+                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    l.print();
+                    System.out.println("\t*------------------------------------------------*");
+                    System.out.println();
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+        scanner.close();
 
-        l.push(5);
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
-
-        l.pop();
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
-
-        l.pop();
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
-
-        l.add_first(10);
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
-
-        l.add_first(50);
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
-
-        l.remove_first();
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
-
-        l.remove_first();
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
-
-        l.remove_first();
-        System.out.println("size: " + l.size);
-        l.print();
-        System.out.println();
     }
 }
