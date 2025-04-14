@@ -38,9 +38,9 @@ class list {
          * 
          * Developer: Pall Pandiyan.S
          */
-        System.out.print("Printing the list: ");
+        System.out.print("\t*  Printing the list: ");
         if (is_empty()) {
-            System.out.print("List is empty!\n");
+            System.out.println("\t*  List is empty!\n");
             return;
         }
 
@@ -53,16 +53,26 @@ class list {
     }
 
     public void print_detailed() {
-        System.out.println("Printing detailed info:");
-        System.out.println("head: " + head);
-        System.out.println("tail: " + tail);
+        /*
+         * Print detailed information, head and tail and previous and next reference on
+         * every element.
+         * 
+         * Developer: Pall Pandiyan.S
+         */
+        System.out.print("\t*  Printing detailed info:");
+        if (is_empty()) {
+            System.out.print("\t*  Empty list!\n");
+            return;
+        }
+        System.out.print("head: " + head.value + " ");
+        System.out.print("tail: " + tail.value + "\n");
 
         Node current = head;
         while (current != null) {
             if (current.previous != null) {
-                System.out.print("previous: " + current.previous.value + " ");
+                System.out.print("\t*  previous: " + current.previous.value + " ");
             } else {
-                System.out.print("previous: null ");
+                System.out.print("\t*  previous: null ");
             }
 
             System.out.print("value: " + current.value + " ");
@@ -86,7 +96,7 @@ class list {
     }
 
     private void initaliaze_list(Node node) {
-        System.out.println("initialize the list! item: " + node.value);
+        System.out.println("\t*  initialize the list! item: " + node.value);
         head = tail = node;
     }
 
@@ -110,13 +120,13 @@ class list {
 
         if (type_id == 1) {
             // add a new elment at the head.
-            System.out.println("add a new elment at the head! item: " + element_value);
+            System.out.println("\t*  add a new elment at the head! item: " + element_value);
             new_node.next = head;
             head.previous = new_node;
             head = new_node;
         } else if (type_id == 2) {
             // add a new elment at the tail.
-            System.out.println("add a new elment at the tail! item: " + element_value);
+            System.out.println("\t*  add a new elment at the tail! item: " + element_value);
             tail.next = new_node;
             new_node.previous = tail;
             tail = new_node;
@@ -192,14 +202,14 @@ class list {
 
         if (type_id == 1) {
             // remove the element on head.
-            System.out.println("remove the element on head! item: " + head.value);
+            System.out.println("\t*  remove the element on head! item: " + head.value);
             Node second_node = head.next;
             second_node.previous = null;
             head.next = null;
             head = second_node;
         } else if (type_id == 2) {
             // remove the element on tail.
-            System.out.println("remove the element on tail! item: " + tail.value);
+            System.out.println("\t*  remove the element on tail! item: " + tail.value);
             Node prev_node = tail.previous;
             prev_node.next = null;
             tail.previous = null;
@@ -334,11 +344,7 @@ class list {
 
 public class list_test {
     public static void main(String[] args) {
-        list l = new list();
-        Scanner scanner = new Scanner(System.in);
-        int choice, new_value;
-        boolean repeat = true;
-
+        // creating the user interface:
         System.out.println();
         System.out.println("\t*------------------------------------------------*");
         System.out.println("\t*                 list functions:                *");
@@ -352,99 +358,108 @@ public class list_test {
         System.out.println("\t*  7) sum of all the elements in the list.       *");
         System.out.println("\t*  8) average of all the elements in the list.   *");
         System.out.println("\t*  9) reverse the list.                          *");
+        System.out.println("\t*------------------------------------------------*");
+        System.out.println("\t* -3) print detailed list.                       *");
+        System.out.println("\t* -2) print list.                                *");
+        System.out.println("\t* -1) print size.                                *");
         System.out.println("\t*  0) EXIT.                                      *");
         System.out.println("\t*------------------------------------------------*");
 
-        while (repeat) {
+        // declaring varriables:
+        list l = new list();
+        Scanner scanner = new Scanner(System.in);
+        int choice, new_value;
+        boolean repeat = true;
+
+        outside: while (repeat) {
+            System.out.println();
+            System.out.println("\t*------------------------------------------------*");
             System.out.print("\t*  enter your choice: ");
             try {
                 choice = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("\t*  Invalid choice!, Exiting now!                 *");
+                // make sure to catch the user input to avoid infinite loop.
+                scanner.next();
+                System.out.println("\t*  Invalid choice!                               *");
                 System.out.println("\t*------------------------------------------------*");
-                System.out.println();
-                repeat = false;
-                continue;
+                continue outside;
             }
 
             switch (choice) {
+                case -3:
+                    l.print_detailed();
+                    System.out.println("\t*------------------------------------------------*");
+                    break;
+                case -2:
+                    l.print();
+                    System.out.println("\t*------------------------------------------------*");
+                    break;
+                case -1:
+                    System.out.println("\t*  Size: " + l.size);
+                    System.out.println("\t*------------------------------------------------*");
+                    break;
                 case 0:
                     System.out.println("\t*  Goodbye!                                      *");
                     System.out.println("\t*------------------------------------------------*");
-                    System.out.println();
                     repeat = false;
-                    continue;
+                    break;
                 case 1:
                     System.out.print("\t*  enter the new number: ");
                     new_value = scanner.nextInt();
                     l.add_first(new_value);
-                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    System.out.println("\t*  Size: " + l.size);
                     l.print();
                     System.out.println("\t*------------------------------------------------*");
-                    System.out.println();
                     break;
                 case 2:
                     System.out.print("\t*  enter the new number: ");
                     new_value = scanner.nextInt();
                     l.add_last(new_value);
-                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    System.out.println("\t*  Size: " + l.size);
                     l.print();
                     System.out.println("\t*------------------------------------------------*");
-                    System.out.println();
                     break;
                 case 3:
                     l.remove_first();
-                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    System.out.println("\t*  Size: " + l.size);
                     l.print();
                     System.out.println("\t*------------------------------------------------*");
-                    System.out.println();
                     break;
                 case 4:
                     l.remove_last();
-                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    System.out.println("\t*  Size: " + l.size);
                     l.print();
                     System.out.println("\t*------------------------------------------------*");
-                    System.out.println();
                     break;
                 case 5:
                     System.out.print("\t*  enter the number to search: ");
                     new_value = scanner.nextInt();
-
-                    System.out.println(
-                            "\t*  Index: " + l.search_first(new_value)
-                                    + "                                       *");
-                    System.out.println();
+                    System.out.println("\t*  Index: " + l.search_first(new_value));
                     break;
                 case 6:
                     System.out.print("\t*  enter the number to check: ");
                     new_value = scanner.nextInt();
-                    System.out.println(
-                            "\t*  list contains " + new_value + "? " + l.contains(new_value)
-                                    + "                        *");
-                    System.out.println();
+                    System.out.println("\t*  list contains " + new_value + "? " + l.contains(new_value));
                     break;
                 case 7:
-                    System.out.println(
-                            "\t*  Sum: " + l.sum() + "                                       *");
-                    System.out.println();
+                    System.out.println("\t*  Sum: " + l.sum());
                     break;
                 case 8:
-                    System.out.println(
-                            "\t*  Average: " + l.average() + "                                       *");
-                    System.out.println();
+                    System.out.println("\t*  Average: " + l.average());
                     break;
                 case 9:
                     l.reverse();
-                    System.out.println("\t*  Size: " + l.size + "                                       *");
+                    System.out.println("\t*  Size: " + l.size);
+                    l.print();
                     l.print_detailed();
                     System.out.println("\t*------------------------------------------------*");
-                    System.out.println();
                     break;
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("\t*  Invalid choice!                               *");
+                    System.out.println("\t*------------------------------------------------*");
+                    System.out.println();
             }
         }
         scanner.close();
-
     }
 }
