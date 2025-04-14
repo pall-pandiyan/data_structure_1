@@ -371,6 +371,7 @@ public class list_test {
         int choice, new_value;
         boolean repeat = true;
 
+        // get a user input and process repeatedly unless user quites.
         outside: while (repeat) {
             System.out.println();
             System.out.println("\t*------------------------------------------------*");
@@ -460,6 +461,8 @@ public class list_test {
                     System.out.println();
             }
         }
+
+        // saftely close the scanner.
         scanner.close();
     }
 }
